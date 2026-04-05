@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Bazaar Index</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand-row">
+        <a class="logo" id="homeLogo" href="/">CARD BAZAAR</a>
+        <div class="header-strips">
+          <div class="header-strip header-strip--trust">
+            <div class="strip-line">Live scan inventory &bull; Premium cards &bull; Authenticated and protected</div>
+          </div>
+          <div class="header-strip header-strip--format">
+            <div class="header-nav-links">
+              <a class="nav-link nav-link--static" href="index-top.html">Index</a>
+              <a class="nav-link nav-link--static" href="index.html">Trending</a>
+              <a class="nav-link nav-link--static" href="vintage.html">Vintage</a>
+              <a class="nav-link nav-link--static" href="alternates.html">Alternates</a>
+            </div>
+          </div>
+          <div class="header-strip header-strip--editions">
+            <div class="header-nav-links header-nav-links--editions">
+              <a class="nav-link nav-link--static" href="editions.html">Editions</a>
+              <a class="nav-link nav-link--static" href="edition.html?set=lorwyn%20eclipse">Lorwyn Eclipsed</a>
+              <a class="nav-link nav-link--static" href="edition.html?set=avatar">Avatar</a>
+              <a class="nav-link nav-link--static" href="edition.html?set=spider-man">Spider Man</a>
+              <a class="nav-link nav-link--static" href="edition.html?set=edge%20of%20eternities">Edge of Eternities</a>
+              <a class="nav-link nav-link--static" href="edition.html?set=final%20fantasy">Final Fantasy</a>
+              <select id="frontSort" class="sort-select sort-select--compact">
+                <option value="default">Sort: Default</option>
+                <option value="newest">Newest</option>
+                <option value="popular">Most Popular</option>
+                <option value="price-high">Highest Price</option>
+                <option value="price-low">Lowest Price</option>
+              </select>
+            </div>
+          </div>
+          <div class="header-strip header-strip--search"></div>
+        </div>
+      </div>
+    </div>
+    <div class="action-stack" id="actionStack">
+      <div class="sidebar-auth">
+        <div class="sidebar-search">
+          <div id="searchBar" class="searchbar searchbar--strip">
+            <input id="globalSearchInput" type="text" name="cardSearch" placeholder="Search cards by name, Edition..." aria-label="Search cards by name" autocomplete="off">
+            <button id="globalSearchBtn" class="search-btn">Search</button>
+          </div>
+        </div>
+        <div id="loginBtn" class="login-cta sidebar-login" role="button" aria-expanded="true" tabindex="0">
+          <div class="login-title"><span id="loginLabel">Log In / Sign Up</span></div>
+          <div id="loginForm" class="login-panel" aria-hidden="false">
+            <div class="login-box">
+              <input type="email" id="loginEmail" placeholder="Email" autocomplete="username">
+              <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+              <div class="login-actions">
+                <button id="loginSubmit" type="button" class="btn-ghost">Submit</button>
+                <button id="loginCreate" type="button" class="btn-ghost">Create</button>
+              </div>
+              <span id="userStatus" class="user-status"></span>
+            </div>
+            <div id="loginProfile" class="login-profile">
+              <div id="loginProfileName" class="login-profile-name"></div>
+              <div class="login-badges">
+                <span class="login-badge">Card Bazaar Gold</span>
+              </div>
+              <div class="login-profile-actions">
+                <a href="profile.html" class="btn-ghost">Settings</a>
+                <a href="profile.html" class="btn-ghost">Watchlist</a>
+                <button id="loginSignOut" type="button" class="btn-ghost">Sign Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="binderHeaderBtn" class="btn-cta sidebar-binder" href="binder.html" style="display:none;">My Binder</a>
+      </div>
+      <div class="sidebar-actions">
+        <a class="btn-cta sidebar-openpack" href="open-pack.html">Open a Pack</a>
+        <div class="sidebar-links">
+          <a class="btn-cta sidebar-link sidebar-link-cta" href="supplies.html">Supplies</a>
+        </div>
+      </div>
+      <a id="contactBtn" class="btn-cta sidebar-contact" href="contact.html">Contact Us</a>
+      <div id="dbBanner" class="db-banner">
+        <div class="db-banner-title">Card Bazaar Database</div>
+        <div class="db-banner-subtitle">News - Set Spoilers - Reviews - Promos</div>
+        <a id="dbBannerLink" href="database.html" target="_blank" class="db-banner-link">Read Now</a>
+      </div>
+      <div class="cart-panel">
+        <div class="cart-tabs">
+          <button id="buyCartTab" class="cart-tab active" type="button">Buy Cart</button>
+          <button id="sellCartTab" class="cart-tab" type="button">Sell Cart</button>
+        </div>
+        <div id="buyCartPanel" class="cart-panel-body">
+          <div class="cart-panel-header">
+            <div class="cart-panel-title">My Cart</div>
+            <span id="cartSavedBadge" class="cart-saved-badge"></span>
+            <div id="cartStoreCredit" class="cart-panel-credit">$0.00 credit</div>
+          </div>
+          <ul id="cartItems" class="cart-list"></ul>
+          <div id="cartTotal" class="cart-total"></div>
+          <div id="cartEmptyState" class="cart-empty-state" style="display:none;">
+            <div class="cart-empty-title">Our Mission</div>
+            <div class="cart-empty-text">Live scans, verified grading, insured shipping - every order.</div>
+          </div>
+          <button id="checkoutBtn" class="btn-cta cart-checkout" style="display:none;">Proceed to Checkout</button>
+          <div class="cart-trust">
+            <div class="cart-shipping">Ships in 1-2 days - Seattle same-day delivery available - 30-day returns.</div>
+            <div id="freeShippingNote" class="cart-shipping-note"></div>
+            <div class="cart-payments">
+              <img class="pay-logo" src="assets/payment/visa.png" alt="Visa">
+              <img class="pay-logo" src="assets/payment/mastercard.png" alt="Mastercard">
+              <img class="pay-logo" src="assets/payment/paypal.png" alt="PayPal">
+              <img class="pay-logo" src="assets/payment/applepay.png" alt="Apple Pay">
+              <img class="pay-logo" src="assets/payment/stripe.png" alt="Stripe">
+            </div>
+            <div class="cart-payments-note">Secure checkout by Stripe. Pay later + crypto coming soon.</div>
+          </div>
+        </div>
+        <div id="sellCartPanel" class="cart-panel-body" style="display:none;">
+          <div class="cart-panel-header">
+            <div class="cart-panel-title">Sell Cart</div>
+            <div id="sellCartTotal" class="cart-panel-credit">$0.00</div>
+          </div>
+          <div class="sell-approval-note">Sell orders are awaiting your approval by default.</div>
+          <label class="sell-fasttrack">
+            <input id="sellFastTrack" type="checkbox">
+            Fast-track for +5% store credit
+          </label>
+          <ul id="sellCartItems" class="cart-list"></ul>
+          <div id="sellCartEmpty" class="cart-empty">Your sell cart is empty.</div>
+          <div class="sell-ship-note">Ship to: Card Bazaar, 1741 N 45th St, Seattle, WA 98103.</div>
+          <div class="cart-actions">
+            <button id="sellCartSubmit" class="btn-cta">Submit Sell Order</button>
+            <button id="sellCartClear" class="btn-ghost">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="index-hero">
+        <div class="index-hero-label">Card Bazaar Index</div>
+        <div class="index-hero-subtitle">Top value cards in Magic, tracked as a living market index.</div>
+        <div class="index-total-row">
+          <span class="index-total-label">Index Total (Scryfall)</span>
+          <span id="indexTotal" class="index-total-value">$0.00</span>
+        </div>
+      </div>
+      <div id="indexTiers" class="index-tiers"></div>
+    </div>
+  </div>
+  <footer class="site-footer">
+  <div class="footer-line">(c) 2026 Card Bazaar - 1741 N 45th St, Seattle, WA 98103.</div>
+  <div class="footer-links">
+    <a href="database.html">Database</a>
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Refund Policy</a>
+    <a href="#">Shipping</a>
+    <a href="grading.html" target="_blank" rel="noopener">Grading</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-disclaimer">All sales subject to availability. Prices and inventory are estimates until confirmed.</div>
+</footer>
+  <!-- Binder popup removed; binder now has its own page -->
+<!-- Checkout Modal -->
+  <div id="checkoutOverlay" class="cb-modal-overlay" aria-hidden="true">
+    <div class="cb-modal" role="dialog" aria-labelledby="cbCheckoutTitle" aria-modal="true" style="max-width:720px;">
+      <div class="cb-modal-grid" style="min-height: 0;">
+        <div class="cb-modal-body" style="flex: 1 1 100%; background: #fff; color:#333;">
+          <div style="font-family:'Bangers', Impact, Charcoal, sans-serif; font-size:36px; color:#d92626; text-shadow:1px 1px #000;">CARD BAZAAR</div>
+          <h3 id="cbCheckoutTitle" style="color:#111;">Checkout</h3>
+          <div id="checkoutSummary" style="margin-bottom:12px; font-size:16px; color:#333;"></div>
+          <div class="checkout-invoice">
+            <div class="checkout-invoice-title">Order Invoice</div>
+            <ul id="checkoutItems" class="checkout-invoice-list"></ul>
+            <div id="checkoutTotals" class="checkout-invoice-total"></div>
+          </div>
+          <div class="checkout-discount">
+            <div class="checkout-discount-title">Discount Code</div>
+            <div class="checkout-discount-row">
+              <input id="discountCodeInput" type="text" placeholder="Enter code" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+              <button id="discountApplyBtn" class="btn-ghost checkout-discount-apply" type="button">Apply</button>
+            </div>
+          </div>
+          <div class="checkout-payments">
+            <div class="checkout-payments-title">Payment Method</div>
+            <div class="checkout-payments-row">
+              <label><input type="radio" name="payMethod" value="card" checked> Card</label>
+              <label><input type="radio" name="payMethod" value="paypal"> PayPal</label>
+              <label><input type="radio" name="payMethod" value="apple"> Apple Pay</label>
+              <label><input type="radio" name="payMethod" value="stripe"> Stripe</label>
+              <label><input type="radio" name="payMethod" value="credit"> Store Credit</label>
+            </div>
+          </div>
+          <label style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <input type="checkbox" id="applyStoreCredit"> Apply store credit
+            <span id="availableCredit" style="color:#d92626; font-weight:700;"></span>
+          </label>
+          <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin-bottom:12px;">
+            <div style="grid-column: 1 / -1; font-weight:800;">Shipping Address</div>
+            <input id="shipName" placeholder="Full Name" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+            <input id="shipAddr" placeholder="Address" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+            <input id="shipCity" placeholder="City" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+            <input id="shipState" placeholder="State" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+            <input id="shipZip" placeholder="ZIP" class="cb-input" style="background:#fff; color:#333; border:1px solid #ccc;">
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="font-weight:800; margin-bottom:6px;">Delivery Options</div>
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <input type="radio" name="shipMethod" id="shipStandard" checked>
+              <span>Standard Shipping &mdash; $0.00</span>
+            </label>
+            <label id="sameDayRow" style="display:none; align-items:center; gap:8px;">
+              <input type="radio" name="shipMethod" id="shipSameDay">
+              <span>Same-Day Delivery (Uber) &mdash; $9.99</span>
+            </label>
+            <div id="sameDayNote" style="font-size:12px; color:#555; margin-top:4px; display:none;">Same-day delivery available for Seattle ZIPs (981xx).</div>
+          </div>
+          <div class="cb-modal-actions">
+            <button id="checkoutPlaceBtn" class="cb-btn-primary">Pay Now</button>
+            <button id="checkoutCancelBtn" class="cb-btn-secondary">Cancel</button>
+          </div>
+          <div class="cb-footnote" style="color:#555;">Simulated checkout for prototype. No payment is processed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pack Opener Modal -->
+  <div id="packOverlay" class="cb-modal-overlay" aria-hidden="true">
+    <div class="cb-modal" role="dialog" aria-labelledby="packTitle" aria-modal="true" style="max-width:980px;">
+      <div class="cb-modal-grid" style="min-height:0;">
+        <div class="cb-modal-body" style="flex: 1 1 100%; background: #fff; color:#333;">
+          <div style="font-family:'Bangers', Impact, Charcoal, sans-serif; font-size:36px; color:#d92626; text-shadow:1px 1px #000;">CARD BAZAAR</div>
+          <h3 id="packTitle" style="color:#111;">Open a Pack</h3>
+          <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            Set:
+            <select id="packSetSelect">
+              <option value="dom">Dominaria</option>
+              <option value="dmu">Dominaria United</option>
+              <option value="mh2">Modern Horizons 2</option>
+              <option value="mom">March of the Machine</option>
+            </select>
+          </label>
+          <div class="cb-modal-actions">
+            <button id="openPackGo" class="cb-btn-primary">Open Pack</button>
+            <button id="packCloseBtn" class="cb-btn-secondary">Close</button>
+          </div>
+          <div id="packGrid" style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin-top:12px;"></div>
+          <div class="cb-modal-actions" style="margin-top:12px;">
+            <button id="packAddAll" class="btn-cta">Add All to Cart</button>
+            <button id="packSellAll" class="btn-ghost">Sell All (70%)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- High-Res Image Overlay -->
+  <div id="hiresOverlay" class="img-overlay" aria-hidden="true">
+    <div class="img-modal">
+      <button id="hiresClose" class="img-close" aria-label="Close">&times;</button>
+      <img id="hiresImage" alt="High-resolution card scan">
+    </div>
+  </div>
+  <div id="sellInfoPopup" style="display:none; position:fixed; top:96px; right:24px; background:#fff; color:#333; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.25); width:360px; padding:16px; z-index:1400;">
+    Looking to sell us your cards? Our team of Graders will verify the condition of each card and give you the highest market rate out of any other retailer for your NM editions. Coming soon!
+  </div>
+  <!-- Email Capture Modal (injected content target) -->
+  <div id="cbEmailOverlay" class="cb-modal-overlay" aria-hidden="true">
+    <div class="cb-modal" role="dialog" aria-labelledby="cbEmailTitle" aria-modal="true">
+      <div class="cb-modal-grid">
+        <div class="cb-modal-img">
+          <div class="cb-card-frame">
+            <div class="cb-card-stack" id="cbModalStack">
+              <img id="cbWaitlistArt" class="cb-waitlist-art" src="" alt="Join the waitlist promo card" style="display:none;">
+            </div>
+          </div>
+        </div>
+        <div class="cb-modal-body">
+          <div class="cb-brand">CARD BAZAAR</div>
+          <h3 id="cbEmailTitle">Join the waitlist</h3>
+          <p>Be first to know about card drops, promos, and new features.</p>
+          <input type="email" id="cbEmailInput" class="cb-input" placeholder="Best Email" aria-label="Email address">
+          <div class="cb-modal-actions">
+            <button id="cbEmailSubmit" class="cb-btn-primary">CONTINUE</button>
+            <button id="cbEmailDismiss" class="cb-btn-secondary">No thanks</button>
+          </div>
+          <div class="cb-footnote">We'll send occasional updates. Unsubscribe anytime.</div>
+          <div id="cbEmailMessage" style="margin-top:10px;font-size:14px;color:#a5d6a7;display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Daily Spin Modal -->
+  <div id="cbWheelOverlay" class="cb-wheel-overlay" aria-hidden="true">
+    <div class="cb-wheel-modal" role="dialog" aria-labelledby="cbWheelTitle" aria-modal="true">
+      <div class="cb-wheel-grid">
+        <div class="cb-wheel-left">
+          <div class="cb-wheel-container">
+            <div class="cb-pointer"></div>
+            <div id="cbWheel" class="cb-wheel"></div>
+          </div>
+        </div>
+        <div class="cb-wheel-right">
+          <div class="cb-wheel-brand">CARD BAZAAR</div>
+          <div id="cbWheelTitle" class="cb-wheel-title">Spin the wheel</div>
+          <div class="cb-wheel-legend">Possible rewards: $10 store credit, free shipping, Card Bazaar points, a free card.</div>
+          <div class="cb-wheel-controls">
+            <button id="cbWheelSpin" class="cb-btn-primary">SPIN</button>
+            <button id="cbWheelDismiss" class="cb-btn-secondary">Not now</button>
+          </div>
+          <div id="cbWheelResult" class="cb-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/index-top.mjs"></script>
+</body>
+</html>
+
