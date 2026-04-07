@@ -31,7 +31,7 @@ Notes:
 - Contribution and workflow guidance: see `CONTRIBUTING.md`.
 
 ## Live Demo
-https://sickasoraus.github.io/card-bazaar-v2/
+(Once GitHub Pages is enabled, the link will appear here.)
 
 ---
 *Note: This is a prototype for demonstration purposes only and is not an actual storefront.*
