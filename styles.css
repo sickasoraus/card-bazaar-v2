@@ -28,8 +28,8 @@ body {
     .scale-toggle {
       display: inline-flex;
       align-items: center;
-      gap: 0;
-      padding: 4px;
+      gap: 10px;
+      padding: 4px 10px 4px 8px;
       border-radius: 999px;
       border: 1px solid #a6a6a6;
       background: linear-gradient(180deg, #f0f0f0 0%, #b6b6b6 100%);
@@ -40,6 +40,13 @@ body {
     .scale-toggle:hover {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 18px rgba(0,0,0,0.2);
       transform: translateY(-1px);
+    }
+    .scale-toggle__label {
+      font-family: "Bangers", Impact, Charcoal, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #2d2d2d;
     }
     .scale-toggle__switch {
       width: 66px;
@@ -71,6 +78,13 @@ body {
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 2px 6px rgba(0,0,0,0.35);
       transition: transform 0.2s ease;
     }
+    .scale-toggle__value {
+      min-width: 32px;
+      text-align: right;
+      font-weight: 800;
+      font-size: 12px;
+      color: #2a2a2a;
+    }
     .scale-toggle--alt {
       border-color: #b23a3a;
       background: linear-gradient(180deg, #f0bcbc 0%, #b52a2a 100%);
@@ -82,7 +96,10 @@ body {
     .scale-toggle--alt .scale-toggle__knob {
       transform: translateX(40px);
     }
-    :root {
+    .scale-toggle--alt .scale-toggle__value {
+      color: #b31212;
+    }
+:root {
       --ui-scale: 0.67;
       --card-width: 512px;
       --card-height: 716px;
@@ -2979,3 +2996,198 @@ body {
     .edition-tile:hover {
       color: #ff7e5f;
     }
+
+/* Mobile layout overrides (phones) */
+.mobile-menu-btn,
+.mobile-menu-backdrop,
+.mobile-menu-header,
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+  .container {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "content";
+    padding: 0 12px 24px;
+    row-gap: 8px;
+  }
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0 2px;
+    gap: 8px;
+  }
+  .brand-row {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-left: 0;
+    flex: 1 1 auto;
+  }
+  .logo {
+    font-size: 28px;
+    margin: 0;
+    line-height: 1;
+  }
+  .header-strips,
+  .header-strip--search,
+  .header-sort {
+    display: none;
+  }
+  .action-stack {
+    display: none;
+  }
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+  body.mobile-menu-open .action-stack {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    background: #fff;
+    padding: 72px 16px 24px;
+    overflow-y: auto;
+    width: 100%;
+    max-width: none;
+    gap: 14px;
+  }
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 2px solid #d92626;
+    background: #fff;
+    color: #d92626;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  .mobile-menu-backdrop {
+    display: none;
+  }
+  body.mobile-menu-open .mobile-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1400;
+  }
+  .mobile-menu-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 12px 0;
+    margin-bottom: 12px;
+    z-index: 2;
+  }
+  body.mobile-menu-open .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-menu-title {
+    font-family: "Bangers", Impact, Charcoal, sans-serif;
+    font-size: 22px;
+    color: #d92626;
+    text-shadow: 1px 1px #000;
+  }
+  .mobile-menu-close {
+    border: 2px solid #d92626;
+    background: #fff;
+    color: #d92626;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  body.mobile-menu-open .mobile-nav {
+    display: flex;
+  }
+  .mobile-nav-title {
+    font-family: "Bangers", Impact, Charcoal, sans-serif;
+    color: #d92626;
+    font-size: 18px;
+    text-shadow: 1px 1px #000;
+  }
+  .mobile-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .mobile-nav-link {
+    border: 1px solid #d92626;
+    color: #d92626;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    background: #fff;
+  }
+  .content {
+    width: 100%;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 2px 0 16px;
+    justify-content: stretch;
+  }
+  .card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: auto;
+    display: flex;
+    justify-content: center;
+  }
+  .card::before {
+    content: none;
+    display: none;
+  }
+  .card-stack {
+    position: relative;
+    height: auto;
+    width: clamp(140px, 40vw, 176px);
+    aspect-ratio: 512 / 716;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+  .card-meta {
+    display: none;
+  }
+  .product-actions {
+    display: none;
+  }
+  .frontpage-update {
+    display: none;
+  }
+}
